@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城市信息查询</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="number"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: none;
+        }
+        .result.show {
+            display: block;
+        }
+        .result-item {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .no-result {
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+            padding: 20px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none;
+        }
+        .no-result.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>城市信息查询</h1>
+        <div class="search-box">
+            <input type="number" id="cityId" placeholder="请输入城市ID" min="1">
+            <button onclick="searchCity()">查询</button>
+        </div>
+        <div id="noResult" class="no-result">
+            暂未查询到该城市信息
+        </div>
+        <div id="result" class="result">
+            <div class="result-item">
+                <strong>编号：</strong> <span id="cityIdResult"></span>
+            </div>
+            <div class="result-item">
+                <strong>城市名称：</strong> <span id="cityName"></span>
+            </div>
+            <div class="result-item">
+                <strong>省份：</strong> <span id="cityState"></span>
+            </div>
+            <div class="result-item">
+                <strong>国家：</strong> <span id="cityCountry"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function searchCity() {
+            const cityId = document.getElementById('cityId').value;
+            const resultDiv = document.getElementById('result');
+            const noResultDiv = document.getElementById('noResult');
+
+            if (!cityId) {
+                noResultDiv.textContent = '请输入城市ID';
+                noResultDiv.classList.add('show');
+                resultDiv.classList.remove('show');
+                return;
+            }
+
+            fetch(`/city?id=${cityId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('City not found');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data) {
+                        throw new Error('No data');
+                    }
+                    document.getElementById('cityIdResult').textContent = data.id;
+                    document.getElementById('cityName').textContent = data.name;
+                    document.getElementById('cityState').textContent = data.state;
+                    document.getElementById('cityCountry').textContent = data.country;
+                    
+                    resultDiv.classList.add('show');
+                    noResultDiv.classList.remove('show');
+                })
+                .catch(error => {
+                    noResultDiv.textContent = '暂未查询到该城市信息';
+                    noResultDiv.classList.add('show');
+                    resultDiv.classList.remove('show');
+                });
+        }
+
+        // Add enter key support
+        document.getElementById('cityId').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchCity();
+            }
+        });
+    </script>
+</body>
+</html>
