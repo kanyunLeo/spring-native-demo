@@ -85,11 +85,11 @@ jobs:
           path: artifacts
 
       - name: Rename release assets
-         # cp artifacts/spring-native-demo-macos-latest/spring-native-demo artifacts/spring-native-demo-latests/spring-native-demo-macos
+         # cp artifacts/spring-native-demo-macos-latest/spring-native-demo artifacts/spring-native-demo-latest/spring-native-demo-macos
         run: |
           ls -lR artifacts
           mkdir -p artifacts/spring-native-demo-latest/
-          cp artifacts/spring-native-demo-macos-latest/spring-native-demo artifacts/spring-native-demo-latests/spring-native-demo-macos
+          cp artifacts/spring-native-demo-macos-latest/spring-native-demo artifacts/spring-native-demo-latest/spring-native-demo-macos
           cp artifacts/spring-native-demo-ubuntu-latest/spring-native-demo artifacts/spring-native-demo-latest/spring-native-demo-ubuntu
           cp artifacts/spring-native-demo-windows-latest/spring-native-demo.exe artifacts/spring-native-demo-latest/spring-native-demo.exe
 
