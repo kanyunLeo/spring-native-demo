@@ -3,7 +3,7 @@
   "includes":[{
     "pattern":"\\Q/com/leosam/mapper/CityMapper.xml\\E"
   }, {
-    "pattern":"\\QMETA-INF/resources/123\\E"
+    "pattern":"\\QMETA-INF/resources/city.html\\E"
   }, {
     "pattern":"\\QMETA-INF/resources/error/400.html\\E"
   }, {
@@ -12,6 +12,8 @@
     "pattern":"\\QMETA-INF/resources/error/4xx.html\\E"
   }, {
     "pattern":"\\QMETA-INF/resources/index.html\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/wqeq\\E"
   }, {
     "pattern":"\\QMETA-INF/services/ch.qos.logback.classic.spi.Configurator\\E"
   }, {
@@ -127,7 +129,7 @@
   }, {
     "pattern":"\\Qorg/springframework/web/util/HtmlCharacterEntityReferences.properties\\E"
   }, {
-    "pattern":"\\Qpublic/123\\E"
+    "pattern":"\\Qpublic/city.html\\E"
   }, {
     "pattern":"\\Qpublic/error/400.html\\E"
   }, {
@@ -135,7 +137,9 @@
   }, {
     "pattern":"\\Qpublic/error/4xx.html\\E"
   }, {
-    "pattern":"\\Qresources/123\\E"
+    "pattern":"\\Qpublic/wqeq\\E"
+  }, {
+    "pattern":"\\Qresources/city.html\\E"
   }, {
     "pattern":"\\Qresources/error/400.html\\E"
   }, {
@@ -145,13 +149,15 @@
   }, {
     "pattern":"\\Qresources/index.html\\E"
   }, {
+    "pattern":"\\Qresources/wqeq\\E"
+  }, {
     "pattern":"\\Qschema-all.sql\\E"
   }, {
     "pattern":"\\Qschema.sql\\E"
   }, {
     "pattern":"\\Qspring.properties\\E"
   }, {
-    "pattern":"\\Qstatic/123\\E"
+    "pattern":"\\Qstatic/city.html\\E"
   }, {
     "pattern":"\\Qstatic/error/400.html\\E"
   }, {
@@ -160,6 +166,8 @@
     "pattern":"\\Qstatic/error/4xx.html\\E"
   }, {
     "pattern":"\\Qstatic/index.html\\E"
+  }, {
+    "pattern":"\\Qstatic/wqeq\\E"
   }]},
   "bundles":[{
     "name":"jakarta.servlet.LocalStrings",

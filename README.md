@@ -6,6 +6,7 @@
 
 ```bash
 mvn clean package
+mvn clean package -P native,!nexus
 ```
 
 ## 使用追踪代理（Tracing Agent）
@@ -17,6 +18,9 @@ java "-Dspring.aot.enabled=true" "-agentlib:native-image-agent=config-output-dir
 
 ### Mac
 ```bash
+# mvn clean package
+java -agentlib:native-image-agent=config-output-dir=./src/main/resources/META-INF/native-image -jar target/spring-native-demo-0.0.1-SNAPSHOT.jar
+# 需要指定 mvn clean package -P native,!nexus
 java -Dspring.aot.enabled=true -agentlib:native-image-agent=config-output-dir=./src/main/resources/META-INF/native-image -jar target/spring-native-demo-0.0.1-SNAPSHOT.jar
 ```
 
